@@ -160,18 +160,26 @@ async function handleFormSubmit(e) {
       if (typeof fbq === 'function') fbq('track', 'Lead');
       if (typeof dataLayer !== 'undefined') dataLayer.push({ event: 'generate_lead', form_name: form.getAttribute('name') });
 
-      const action = form.getAttribute('action');
-      if (action) {
-        const redirectUrl = new URL(action, window.location.origin);
-        new URLSearchParams(window.location.search).forEach((value, key) => redirectUrl.searchParams.set(key, value));
-        if (nome) redirectUrl.searchParams.set('nome', nome);
-        window.location.href = redirectUrl.toString();
-        return;
+      const interesseEl = form.querySelector('[name="interesse"]');
+      const interesse = interesseEl ? interesseEl.value : '';
+      
+      let primeiroNome = nome.trim().split(' ')[0];
+      if (primeiroNome) {
+        primeiroNome = primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
       }
 
-      showFeedback(feedback, 'success', 'Sua mensagem foi enviada com sucesso!');
-      form.reset();
-      if (phone && phone._iti) phone._iti.setNumber('');
+      let mensagemWa = '';
+      if (interesse === 'Adulto') {
+        mensagemWa = `Olá, me chamo ${primeiroNome} e tenho interesse em agendar uma consulta para um adulto.`;
+      } else {
+        mensagemWa = `Olá, me chamo ${primeiroNome} e tenho interesse em agendar uma consulta para uma ${interesse.toLowerCase()}.`;
+      }
+
+      const foneMariana = '5511985879529';
+      const whatsappUrl = `https://wa.me/${foneMariana}?text=${encodeURIComponent(mensagemWa)}`;
+
+      window.location.href = whatsappUrl;
+      return;
     } else {
       throw new Error('Erro no servidor');
     }
