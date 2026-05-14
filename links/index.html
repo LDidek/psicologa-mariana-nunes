@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mariana Nunes | Psicóloga</title>
+  <meta name="description" content="Psicóloga especialista em desenvolvimento infantil em Florianópolis. Agende sua consulta.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+  <!-- intl-tel-input -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --color-primary: #3ABFB5;
+      --color-primary-dark: #2A9E95;
+      --color-accent: #4A7C6F;
+      --color-warm-rose: #E8A598;
+      --color-bg: #FAF8F5;
+      --color-bg-alt: #F2EDE8;
+      --color-text-dark: #2C3E35;
+      --color-text-medium: #5C6B63;
+      --color-white: #FFFFFF;
+      --font-heading: 'Cormorant Garamond', serif;
+      --font-body: 'Jost', sans-serif;
+      --shadow-rest: 0 2px 12px rgba(58,191,181,0.08);
+      --shadow-hover: 0 8px 32px rgba(58,191,181,0.18);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-dark);
+      background-color: var(--color-bg);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Background decorations */
+    .bg-sphere {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-sphere-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(58,191,181,0.12) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+    }
+    .bg-sphere-2 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(232,165,152,0.1) 0%, transparent 70%);
+      bottom: 100px;
+      left: -80px;
+    }
+
+    /* === PAGE LAYOUT === */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 52px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* === PROFILE === */
+    .profile {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .profile-avatar-wrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid var(--color-primary);
+      box-shadow: 0 0 0 6px rgba(58,191,181,0.12);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(58,191,181,0.08);
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-avatar-fallback {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-style: italic;
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .profile-name {
+      font-family: var(--font-heading);
+      font-size: 34px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--color-text-dark);
+      line-height: 1.2;
+    }
+
+    .profile-title {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-medium);
+      line-height: 1.6;
+    }
+
+    /* === LINKS === */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-card {
+      width: 100%;
+      border-radius: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      text-decoration: none;
+    }
+
+    .link-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .link-card:active {
+      transform: translateY(0);
+    }
+
+    .link-card.primary {
+      background: var(--color-primary);
+      color: white;
+      box-shadow: 0 4px 20px rgba(58,191,181,0.28);
+    }
+    .link-card.primary:hover {
+      background: var(--color-primary-dark);
+      box-shadow: 0 8px 32px rgba(58,191,181,0.38);
+    }
+
+    .link-card.secondary {
+      background: var(--color-white);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-rest);
+      border: 1px solid rgba(58,191,181,0.15);
+    }
+    .link-card.secondary:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .link-card.accent {
+      background: var(--color-bg-alt);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-rest);
+      border: 1px solid rgba(74,124,111,0.18);
+    }
+    .link-card.accent:hover {
+      box-shadow: 0 8px 28px rgba(74,124,111,0.14);
+    }
+
+    .link-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .link-card.primary .link-card-icon {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+    .link-card.secondary .link-card-icon {
+      background: rgba(58,191,181,0.1);
+      color: var(--color-primary);
+    }
+    .link-card.accent .link-card-icon {
+      background: rgba(74,124,111,0.1);
+      color: var(--color-accent);
+    }
+
+    .link-card-body {
+      flex: 1;
+    }
+
+    .link-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .link-card-sub {
+      font-size: 12px;
+      opacity: 0.72;
+      margin-top: 2px;
+    }
+
+    .link-card-arrow {
+      font-size: 18px;
+      opacity: 0.55;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .link-card[data-open="true"] .link-card-arrow {
+      transform: rotate(90deg);
+    }
+
+    /* === ADDRESS EXPAND === */
+    .address-expand {
+      display: none;
+      margin-top: 4px;
+    }
+
+    .address-expand.open {
+      display: block;
+    }
+
+    .address-expand-inner {
+      padding: 14px;
+      background: var(--color-white);
+      border-radius: 12px;
+      border: 1px solid rgba(58,191,181,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: var(--shadow-rest);
+    }
+
+    .address-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .address-btn.maps {
+      background: rgba(66,133,244,0.08);
+      color: #1558d6;
+    }
+    .address-btn.maps:hover { background: rgba(66,133,244,0.15); }
+
+    .address-btn.waze {
+      background: rgba(0,188,212,0.08);
+      color: #007c91;
+    }
+    .address-btn.waze:hover { background: rgba(0,188,212,0.14); }
+
+    .address-text {
+      font-size: 12px;
+      color: var(--color-text-medium);
+      text-align: center;
+      padding: 2px 0;
+    }
+
+    /* === MODALS === */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44,62,53,0.72);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--color-bg);
+      border-radius: 20px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-text-medium);
+      line-height: 1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--color-text-dark);
+      background: var(--color-bg-alt);
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--color-text-dark);
+      margin-bottom: 6px;
+    }
+    .modal-subtitle {
+      font-size: 14px;
+      color: var(--color-text-medium);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* === FORM === */
+    .form-group { margin-bottom: 16px; }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-medium);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(58,191,181,0.3);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-text-dark);
+      background: var(--color-white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(58,191,181,0.12);
+    }
+
+    .form-input::placeholder { color: #a8b2ad; }
+
+    .form-feedback {
+      display: none;
+      font-size: 13px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    /* === BUTTON === */
+    .btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+    .btn:hover {
+      background: var(--color-primary-dark);
+      box-shadow: 0 8px 24px rgba(58,191,181,0.35);
+      transform: translateY(-1px);
+    }
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* === FOOTER === */
+    .page-footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-text-medium);
+      padding-top: 4px;
+    }
+
+    /* intl-tel-input fix */
+    .iti { width: 100%; }
+  </style>
+</head>
+<body>
+
+  <div class="bg-sphere bg-sphere-1"></div>
+  <div class="bg-sphere bg-sphere-2"></div>
+
+  <div class="page">
+
+    <!-- Profile -->
+    <div class="profile">
+      <div class="profile-avatar-wrap">
+        <img
+          class="profile-avatar"
+          src="/.netlify/images?url=/images/mariana.png&w=200&q=80"
+          alt="Psicóloga Mariana Nunes"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="profile-avatar-fallback" style="display:none;">M</span>
+      </div>
+
+      <h1 class="profile-name">Mariana Nunes</h1>
+      <p class="profile-title">Psicóloga · Desenvolvimento Infantil<br>Florianópolis, SC</p>
+    </div>
+
+    <!-- Links -->
+    <div class="links">
+
+      <!-- Agendar consulta -->
+      <button type="button" class="link-card primary" data-modal="modal-consulta">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-calendar-check"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Agendar Consulta</div>
+          <div class="link-card-sub">Resposta em até 1h via WhatsApp</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+      <!-- Endereço -->
+      <div>
+        <button type="button" class="link-card secondary" id="addressToggle" data-open="false">
+          <div class="link-card-icon">
+            <i class="ph-fill ph-map-pin"></i>
+          </div>
+          <div class="link-card-body">
+            <div class="link-card-title">Como Chegar</div>
+            <div class="link-card-sub">Rod. João Gualberto, 118 · Florianópolis</div>
+          </div>
+          <i class="ph ph-caret-right link-card-arrow"></i>
+        </button>
+
+        <div class="address-expand" id="addressExpand">
+          <div class="address-expand-inner">
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=-27.4455855,-48.4552431"
+              target="_blank"
+              rel="noopener"
+              class="address-btn maps">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1558d6"/>
+              </svg>
+              Abrir no Google Maps
+            </a>
+            <a
+              href="https://waze.com/ul?ll=-27.4455855,-48.4552431&navigate=yes"
+              target="_blank"
+              rel="noopener"
+              class="address-btn waze">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="16" cy="14" r="12" fill="#33CCFF"/>
+                <ellipse cx="12" cy="17" rx="2" ry="2.5" fill="#fff"/>
+                <ellipse cx="20" cy="17" rx="2" ry="2.5" fill="#fff"/>
+                <circle cx="12" cy="17" r="1" fill="#222"/>
+                <circle cx="20" cy="17" r="1" fill="#222"/>
+                <path d="M12 21 Q16 24 20 21" stroke="#222" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+              Abrir no Waze
+            </a>
+            <p class="address-text">Sala 101 · CEP 88058-330</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guia Prático -->
+      <button type="button" class="link-card accent" data-modal="modal-guia">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Guia Prático: Comportamentos Difíceis na Infância</div>
+          <div class="link-card-sub">O Que Fazer — Material digital</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+    </div>
+
+    <footer class="page-footer">
+      © <span id="year"></span> Mariana Nunes Psicóloga
+    </footer>
+
+  </div>
+
+  <!-- Modal: Agendar Consulta -->
+  <div class="modal-overlay" id="modal-consulta" role="dialog" aria-modal="true" aria-label="Agendar consulta">
+    <div class="modal-content">
+      <button type="button" class="modal-close" aria-label="Fechar">&times;</button>
+      <h2 class="modal-title">Agendar Consulta</h2>
+      <p class="modal-subtitle">Preencha seus dados e entraremos em contato pelo WhatsApp.</p>
+
+      <form name="links-consulta" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-form-type="consulta">
+        <input type="hidden" name="form-name" value="links-consulta">
+        <p hidden><label>Não preencha: <input name="bot-field"></label></p>
+
+        <div class="form-group">
+          <label class="form-label" for="c-nome">Nome</label>
+          <input type="text" id="c-nome" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="c-telefone">WhatsApp</label>
+          <input type="tel" id="c-telefone" name="telefone" class="form-input" required autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="c-interesse">Interesse de atendimento</label>
+          <select id="c-interesse" name="interesse" class="form-input" required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="Família">Família</option>
+            <option value="Criança">Criança</option>
+            <option value="Adulto">Adulto</option>
+          </select>
+        </div>
+        <div class="form-feedback"></div>
+        <button type="submit" class="btn">Quero agendar minha consulta</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Guia Prático -->
+  <div class="modal-overlay" id="modal-guia" role="dialog" aria-modal="true" aria-label="Guia Prático">
+    <div class="modal-content">
+      <button type="button" class="modal-close" aria-label="Fechar">&times;</button>
+      <h2 class="modal-title">Guia Prático</h2>
+      <p class="modal-subtitle">Preencha seus dados para prosseguir para o pagamento do material.</p>
+
+      <form name="links-guia" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-form-type="guia">
+        <input type="hidden" name="form-name" value="links-guia">
+        <p hidden><label>Não preencha: <input name="bot-field"></label></p>
+
+        <div class="form-group">
+          <label class="form-label" for="g-nome">Nome</label>
+          <input type="text" id="g-nome" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="g-telefone">WhatsApp</label>
+          <input type="tel" id="g-telefone" name="telefone" class="form-input" required autocomplete="tel">
+        </div>
+        <div class="form-feedback"></div>
+        <button type="submit" class="btn">Prosseguir para Pagamento →</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+  <script>
+    // ── CONFIGURAÇÕES ────────────────────────────────
+    const WHATSAPP_FONE = '5511985879529';
+    const LINK_PAGAMENTO_GUIA = 'https://LINK_DO_PAGAMENTO_AQUI'; // ← substitua pelo link real
+    // ────────────────────────────────────────────────
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initYear();
+      initModals();
+      initPhoneInputs();
+      initForms();
+      initAddressToggle();
+    });
+
+    function initYear() {
+      const el = document.getElementById('year');
+      if (el) el.textContent = new Date().getFullYear();
+    }
+
+    // MODALS
+    function initModals() {
+      document.querySelectorAll('[data-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modal = document.getElementById(btn.dataset.modal);
+          if (modal) openModal(modal);
+        });
+      });
+
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.querySelector('.modal-close')?.addEventListener('click', () => closeModal(modal));
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          const active = document.querySelector('.modal-overlay.active');
+          if (active) closeModal(active);
+        }
+      });
+    }
+
+    function openModal(modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // PHONE INPUTS
+    function initPhoneInputs() {
+      if (typeof intlTelInput === 'undefined') return;
+      document.querySelectorAll('input[type="tel"]').forEach(input => {
+        input._iti = intlTelInput(input, {
+          initialCountry: 'br',
+          preferredCountries: ['br', 'us', 'pt'],
+          separateDialCode: true,
+          strictMode: true,
+          loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js'
+        });
+      });
+    }
+
+    // FORMS
+    function initForms() {
+      document.querySelectorAll('form[data-form]').forEach(form => {
+        form.addEventListener('submit', handleFormSubmit);
+      });
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('[type="submit"]');
+      const feedback = form.querySelector('.form-feedback');
+      const formType = form.dataset.formType;
+
+      let valid = true;
+      form.querySelectorAll('[required]').forEach(field => {
+        field.style.borderColor = 'rgba(58,191,181,0.3)';
+        if (!field.value.trim()) { field.style.borderColor = '#ef4444'; valid = false; }
+        if (field.type === 'tel' && field._iti && !field._iti.isValidNumber()) {
+          field.style.borderColor = '#ef4444'; valid = false;
+        }
+      });
+
+      if (!valid) {
+        showFeedback(feedback, 'error', 'Por favor, preencha todos os campos corretamente.');
+        return;
+      }
+
+      const phoneInput = form.querySelector('input[type="tel"]');
+      if (phoneInput?._iti) phoneInput.value = phoneInput._iti.getNumber();
+
+      const nome = form.querySelector('[name="nome"]')?.value || '';
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      try {
+        const res = await fetch(window.location.pathname, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+
+        if (res.ok) {
+          if (formType === 'consulta') {
+            const interesseEl = form.querySelector('[name="interesse"]');
+            const interesse = interesseEl ? interesseEl.value : '';
+            let primeiroNome = nome.trim().split(' ')[0];
+            if (primeiroNome) {
+              primeiroNome = primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
+            }
+            let msg = '';
+            if (interesse === 'Adulto') {
+              msg = `Olá, me chamo ${primeiroNome} e tenho interesse em agendar uma consulta para um adulto.`;
+            } else {
+              msg = `Olá, me chamo ${primeiroNome} e tenho interesse em agendar uma consulta para uma ${interesse.toLowerCase()}.`;
+            }
+            window.location.href = `https://wa.me/${WHATSAPP_FONE}?text=${encodeURIComponent(msg)}`;
+
+          } else if (formType === 'guia') {
+            window.location.href = LINK_PAGAMENTO_GUIA;
+          }
+        } else {
+          throw new Error('server error');
+        }
+      } catch {
+        showFeedback(feedback, 'error', 'Houve um erro ao enviar. Tente novamente.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    }
+
+    function showFeedback(el, type, msg) {
+      if (!el) return;
+      el.style.display = 'block';
+      el.textContent = msg;
+      if (type === 'success') {
+        Object.assign(el.style, { backgroundColor: '#ecfdf5', color: '#065f46', border: '1px solid #a7f3d0' });
+      } else {
+        Object.assign(el.style, { backgroundColor: '#fef2f2', color: '#991b1b', border: '1px solid #fecaca' });
+      }
+      setTimeout(() => { el.style.display = 'none'; el.textContent = ''; }, 5000);
+    }
+
+    // ADDRESS TOGGLE
+    function initAddressToggle() {
+      const toggle = document.getElementById('addressToggle');
+      const expand = document.getElementById('addressExpand');
+      if (!toggle || !expand) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.dataset.open === 'true';
+        toggle.dataset.open = String(!isOpen);
+        expand.classList.toggle('open', !isOpen);
+      });
+    }
+  </script>
+</body>
+</html>
