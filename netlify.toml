@@ -18,6 +18,12 @@
   status = 200
   force = true
 
+# Link camuflado para a bio do Instagram (com UTMs)
+[[redirects]]
+  from = "/bio"
+  to = "/links/?utm_source=instagram&utm_medium=bio&utm_campaign=bio"
+  status = 302
+
 # Redirect www → apex
 [[redirects]]
   from = "https://www.example.com/*"
