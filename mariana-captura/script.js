@@ -222,13 +222,33 @@ function initPhoneInput() {
   if (typeof intlTelInput === 'undefined') return;
 
   document.querySelectorAll('input[type="tel"]').forEach(input => {
-    input._iti = intlTelInput(input, {
+    const iti = intlTelInput(input, {
       initialCountry: 'br',
       preferredCountries: ['br', 'us', 'pt'],
       separateDialCode: true,
       strictMode: true,
       loadUtilsOnInit: 'https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js'
     });
+    input._iti = iti;
+
+    const handlePhoneAutofill = () => {
+      let val = input.value.replace(/\D/g, '');
+      const rawVal = input.value.trim();
+      const countryData = iti.getSelectedCountryData();
+      const dialCode = countryData.dialCode;
+
+      if (rawVal.startsWith('+')) {
+        iti.setNumber(rawVal);
+      } else if (dialCode === '55' && val.startsWith('55') && val.length > 11) {
+        iti.setNumber('+' + val);
+      } else if (dialCode !== '55' && val.startsWith(dialCode) && val.length > 10) {
+        iti.setNumber('+' + val);
+      }
+    };
+
+    input.addEventListener('input', handlePhoneAutofill);
+    input.addEventListener('change', handlePhoneAutofill);
+    input.addEventListener('blur', handlePhoneAutofill);
   });
 }
 
