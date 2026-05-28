@@ -231,18 +231,30 @@ function initPhoneInput() {
     });
     input._iti = iti;
 
-    const handlePhoneAutofill = () => {
-      let val = input.value.replace(/\D/g, '');
+    const handlePhoneAutofill = (e) => {
+      if (e && e.detail && e.detail.synthetic) return;
+
       const rawVal = input.value.trim();
+      let val = rawVal.replace(/\D/g, '');
       const countryData = iti.getSelectedCountryData();
       const dialCode = countryData.dialCode;
 
+      let cleanedVal = null;
+
       if (rawVal.startsWith('+')) {
-        iti.setNumber(rawVal);
+        const dialCodeWithPlus = '+' + dialCode;
+        if (rawVal.startsWith(dialCodeWithPlus)) {
+          cleanedVal = rawVal.substring(dialCodeWithPlus.length).trim();
+        }
       } else if (dialCode === '55' && val.startsWith('55') && val.length > 11) {
-        iti.setNumber('+' + val);
+        cleanedVal = val.substring(dialCode.length).trim();
       } else if (dialCode !== '55' && val.startsWith(dialCode) && val.length > 10) {
-        iti.setNumber('+' + val);
+        cleanedVal = val.substring(dialCode.length).trim();
+      }
+
+      if (cleanedVal !== null) {
+        input.value = cleanedVal;
+        input.dispatchEvent(new CustomEvent('input', { detail: { synthetic: true }, bubbles: true }));
       }
     };
 
