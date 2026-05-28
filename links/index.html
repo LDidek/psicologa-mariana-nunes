@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KGB9BXCS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Mariana Nunes | Psicóloga</title>
   <meta name="description" content="Psicóloga especialista em desenvolvimento infantil em Florianópolis. Agende sua consulta.">
 
@@ -456,6 +465,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGB9BXCS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <div class="bg-sphere bg-sphere-1"></div>
   <div class="bg-sphere bg-sphere-2"></div>
@@ -726,6 +739,10 @@
         });
 
         if (res.ok) {
+          if (typeof dataLayer !== 'undefined') {
+            dataLayer.push({ event: 'generate_lead', form_name: form.getAttribute('name') });
+          }
+
           if (formType === 'consulta') {
             const interesseEl = form.querySelector('[name="interesse"]');
             const interesse = interesseEl ? interesseEl.value : '';
