@@ -1,7 +1,7 @@
 {
 	"geolocation": {
 		"data": {
-			"city": "Florianópolis",
+			"city": "São José",
 			"country": {
 				"code": "BR",
 				"name": "Brazil"
@@ -11,11 +11,11 @@
 				"name": "Santa Catarina"
 			},
 			"timezone": "America/Sao_Paulo",
-			"latitude": -27.6168,
-			"longitude": -48.4997,
-			"postalCode": "88000"
+			"latitude": -27.6157,
+			"longitude": -48.6235,
+			"postalCode": "88100"
 		},
-		"timestamp": 1778765153999
+		"timestamp": 1780013461590
 	},
 	"siteId": "fa36bcd5-ca6f-443f-8e8e-52394680397c"
 }
