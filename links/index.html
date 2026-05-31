@@ -326,6 +326,28 @@
       padding: 2px 0;
     }
 
+    .ebook-target-box {
+      background: rgba(58,191,181,0.06);
+      border: 1px solid rgba(58,191,181,0.15);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+    .ebook-target-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-primary-dark);
+      margin-bottom: 4px;
+    }
+    .ebook-target-text {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--color-text-dark);
+    }
+
     /* === MODALS === */
     .modal-overlay {
       display: none;
@@ -505,6 +527,99 @@
         <i class="ph ph-arrow-right link-card-arrow"></i>
       </button>
 
+      <!-- Site Principal -->
+      <a href="https://psicologamarinunes.com.br/" target="_blank" rel="noopener" class="link-card secondary">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-globe"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Site Principal</div>
+          <div class="link-card-sub">Visitar site oficial da Psicóloga Mariana Nunes</div>
+        </div>
+        <i class="ph ph-arrow-square-out link-card-arrow"></i>
+      </a>
+
+      <!-- eBooks -->
+      <!-- eBook: Leo e o Vulcão -->
+      <button type="button" class="link-card secondary ebook-btn" 
+              data-modal="modal-ebook" 
+              data-title="Leo e o Vulcão" 
+              data-desc="Crianças de 4 a 10 anos com dificuldades para lidar com raiva, frustrações, limites e emoções intensas, além de seus pais e cuidadores."
+              data-checkout="https://pay.hotmart.com/K106065366R">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Leo e o Vulcão</div>
+          <div class="link-card-sub">Crianças de 4 a 10 anos · Raiva e Frustrações</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+      <!-- eBook: Joana e o Mostrinho da Preocupação -->
+      <button type="button" class="link-card secondary ebook-btn" 
+              data-modal="modal-ebook" 
+              data-title="Joana e o Mostrinho da Preocupação" 
+              data-desc="Crianças de 4 a 10 anos que apresentam medos, inseguranças, preocupações excessivas ou sinais de ansiedade."
+              data-checkout="https://pay.hotmart.com/H106065309L">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Joana e o Mostrinho da Preocupação</div>
+          <div class="link-card-sub">Crianças de 4 a 10 anos · Medos e Ansiedade</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+      <!-- eBook: Como Prevenir Explosões Emocionais -->
+      <button type="button" class="link-card secondary ebook-btn" 
+              data-modal="modal-ebook" 
+              data-title="Como Prevenir Explosões Emocionais" 
+              data-desc="Pais, mães e cuidadores de crianças entre 2 e 12 anos que desejam ajudar seus filhos a desenvolver regulação emocional, lidar melhor com frustrações e prevenir crises de comportamento."
+              data-checkout="https://pay.hotmart.com/Y106065149N">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Como Prevenir Explosões Emocionais</div>
+          <div class="link-card-sub">Pais e Cuidadores · Regulação Emocional</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+      <!-- eBook: Como Lidar com Comportamentos Difíceis -->
+      <button type="button" class="link-card secondary ebook-btn" 
+              data-modal="modal-ebook" 
+              data-title="Como Lidar com Comportamentos Difíceis" 
+              data-desc="Pais, mães e cuidadores de crianças entre 2 e 12 anos que enfrentam birras, desobediência, agressividade, dificuldade com limites e comportamentos desafiadores no dia a dia."
+              data-checkout="https://pay.hotmart.com/C106065083U">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Como Lidar com Comportamentos Difíceis</div>
+          <div class="link-card-sub">Pais e Cuidadores · Birras e Limites</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
+      <!-- eBook: Meu Filho Parece Ser Diferente -->
+      <button type="button" class="link-card secondary ebook-btn" 
+              data-modal="modal-ebook" 
+              data-title="Meu Filho Parece Ser Diferente" 
+              data-desc="Pais, mães, cuidadores e educadores que percebem sinais de TDAH, autismo, altas habilidades ou desenvolvimento diferente do esperado e buscam compreender melhor as necessidades da criança."
+              data-checkout="https://pay.hotmart.com/G106065221V">
+        <div class="link-card-icon">
+          <i class="ph-fill ph-book-open"></i>
+        </div>
+        <div class="link-card-body">
+          <div class="link-card-title">Meu Filho Parece Ser Diferente</div>
+          <div class="link-card-sub">Pais e Educadores · TDAH, Autismo e Sinais</div>
+        </div>
+        <i class="ph ph-arrow-right link-card-arrow"></i>
+      </button>
+
       <!-- Endereço -->
       <div>
         <button type="button" class="link-card secondary" id="addressToggle" data-open="false">
@@ -550,18 +665,6 @@
         </div>
       </div>
 
-      <!-- Guia Prático -->
-      <button type="button" class="link-card accent" data-modal="modal-guia">
-        <div class="link-card-icon">
-          <i class="ph-fill ph-book-open"></i>
-        </div>
-        <div class="link-card-body">
-          <div class="link-card-title">Guia Prático: Comportamentos Difíceis na Infância</div>
-          <div class="link-card-sub">O Que Fazer — Material digital</div>
-        </div>
-        <i class="ph ph-arrow-right link-card-arrow"></i>
-      </button>
-
     </div>
 
     <footer class="page-footer">
@@ -604,24 +707,30 @@
     </div>
   </div>
 
-  <!-- Modal: Guia Prático -->
-  <div class="modal-overlay" id="modal-guia" role="dialog" aria-modal="true" aria-label="Guia Prático">
+  <!-- Modal: eBook -->
+  <div class="modal-overlay" id="modal-ebook" role="dialog" aria-modal="true" aria-label="Adquirir eBook">
     <div class="modal-content">
       <button type="button" class="modal-close" aria-label="Fechar">&times;</button>
-      <h2 class="modal-title">Guia Prático</h2>
+      <h2 class="modal-title" id="ebook-modal-title">Adquirir eBook</h2>
       <p class="modal-subtitle">Preencha seus dados para prosseguir para o pagamento do material.</p>
 
-      <form name="links-guia" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-form-type="guia">
-        <input type="hidden" name="form-name" value="links-guia">
+      <div class="ebook-target-box" id="ebook-modal-desc-box" style="display:none;">
+        <span class="ebook-target-label">Indicado para:</span>
+        <p class="ebook-target-text" id="ebook-modal-desc"></p>
+      </div>
+
+      <form name="links-ebook" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-form data-form-type="ebook">
+        <input type="hidden" name="form-name" value="links-ebook">
+        <input type="hidden" name="ebook_nome" id="g-ebook-nome" value="">
         <p hidden><label>Não preencha: <input name="bot-field"></label></p>
 
         <div class="form-group">
-          <label class="form-label" for="g-nome">Nome</label>
-          <input type="text" id="g-nome" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
+          <label class="form-label" for="g-nome-ebook">Nome</label>
+          <input type="text" id="g-nome-ebook" name="nome" class="form-input" required autocomplete="name" placeholder="Seu nome completo">
         </div>
         <div class="form-group">
-          <label class="form-label" for="g-telefone">WhatsApp</label>
-          <input type="tel" id="g-telefone" name="telefone" class="form-input" required autocomplete="tel">
+          <label class="form-label" for="g-telefone-ebook">WhatsApp</label>
+          <input type="tel" id="g-telefone-ebook" name="telefone" class="form-input" required autocomplete="tel">
         </div>
         <div class="form-feedback"></div>
         <button type="submit" class="btn">Prosseguir para Pagamento →</button>
@@ -633,7 +742,7 @@
   <script>
     // ── CONFIGURAÇÕES ────────────────────────────────
     const WHATSAPP_FONE = '5511985879529';
-    const LINK_PAGAMENTO_GUIA = 'https://LINK_DO_PAGAMENTO_AQUI'; // ← substitua pelo link real
+    let activeEbookCheckout = '';
     // ────────────────────────────────────────────────
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -642,6 +751,7 @@
       initPhoneInputs();
       initForms();
       initAddressToggle();
+      initEbookButtons();
     });
 
     function initYear() {
@@ -758,8 +868,8 @@
             }
             window.location.href = `https://wa.me/${WHATSAPP_FONE}?text=${encodeURIComponent(msg)}`;
 
-          } else if (formType === 'guia') {
-            window.location.href = LINK_PAGAMENTO_GUIA;
+          } else if (formType === 'ebook') {
+            window.location.href = activeEbookCheckout || 'https://pay.hotmart.com/...';
           }
         } else {
           throw new Error('server error');
@@ -793,6 +903,34 @@
         const isOpen = toggle.dataset.open === 'true';
         toggle.dataset.open = String(!isOpen);
         expand.classList.toggle('open', !isOpen);
+      });
+    }
+
+    // EBOOK BUTTONS
+    function initEbookButtons() {
+      document.querySelectorAll('.ebook-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const title = btn.getAttribute('data-title');
+          const desc = btn.getAttribute('data-desc');
+          const checkoutUrl = btn.getAttribute('data-checkout');
+          
+          const modalTitle = document.getElementById('ebook-modal-title');
+          const inputEbookNome = document.getElementById('g-ebook-nome');
+          const descBox = document.getElementById('ebook-modal-desc-box');
+          const descText = document.getElementById('ebook-modal-desc');
+          
+          if (modalTitle) modalTitle.textContent = title;
+          if (inputEbookNome) inputEbookNome.value = title;
+          
+          if (desc && descText && descBox) {
+            descText.textContent = desc;
+            descBox.style.display = 'block';
+          } else if (descBox) {
+            descBox.style.display = 'none';
+          }
+          
+          activeEbookCheckout = checkoutUrl;
+        });
       });
     }
   </script>
