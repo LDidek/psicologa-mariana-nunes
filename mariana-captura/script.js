@@ -178,9 +178,7 @@ async function handleFormSubmit(e) {
       const foneMariana = '5511985879529';
       const whatsappUrl = `https://wa.me/${foneMariana}?text=${encodeURIComponent(mensagemWa)}`;
 
-      // Aguarda o disparo das tags de conversão (Google Ads/GA4/Meta) antes de navegar.
-      // O redirect imediato cancelava o beacon de conversão do Google Ads.
-      setTimeout(function () { window.location.href = whatsappUrl; }, 1500);
+      window.location.href = whatsappUrl;
       return;
     } else {
       throw new Error('Erro no servidor');
