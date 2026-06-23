@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preload" as="image" href="/.netlify/images?url=/images/mariana.png&w=600&q=80">
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -26,14 +27,14 @@
   <!-- FONTS: Cormorant Garamond & Jost -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@400;500;600&display=swap"></noscript>
 
   <!-- Preconnect CDNs -->
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
   <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- intl-tel-input -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
@@ -44,7 +45,6 @@
   <link rel="stylesheet" href="/autismo/style.css?v=1.0.1">
 
   <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js" defer></script>
   <script src="/autismo/script.js?v=1.0.1" defer></script>
 </head>
@@ -116,7 +116,7 @@
     <section class="section specialist">
       <div class="container">
         <div class="specialist-image" data-aos="fade-right">
-          <img src="/.netlify/images?url=/images/mariana.png&w=600&q=80" alt="Psicóloga Mariana Nunes">
+          <img src="/.netlify/images?url=/images/mariana.png&w=600&q=80" alt="Psicóloga Mariana Nunes" fetchpriority="high" loading="eager">
         </div>
         <div class="specialist-content" data-aos="fade-left" data-aos-delay="150">
           <h2 class="specialist-title">Um olhar aprofundado para compreender a singularidade do desenvolvimento infantil</h2>
