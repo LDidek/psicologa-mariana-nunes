@@ -179,7 +179,7 @@ async function handleFormSubmit(e) {
         mensagemWa = `Olá, me chamo ${primeiroNome} e tenho interesse em Laudo Psicológico para a Escola.`;
       }
 
-      const foneMariana = '5511985879529';
+      const foneMariana = '5548992091890';
       const whatsappUrl = `https://wa.me/${foneMariana}?text=${encodeURIComponent(mensagemWa)}`;
 
       window.location.href = whatsappUrl;
