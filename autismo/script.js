@@ -177,7 +177,7 @@ async function handleFormSubmit(e) {
         mensagemWa = `Olá, me chamo ${primeiroNome} e gostaria de tirar algumas dúvidas.`;
       }
 
-      const foneMariana = '5548992091890';
+      const foneMariana = '5511985879529';
       const whatsappUrl = `https://wa.me/${foneMariana}?text=${encodeURIComponent(mensagemWa)}`;
 
       window.location.href = whatsappUrl;
