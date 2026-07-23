@@ -312,7 +312,7 @@ function closeModal(modal) {
    ========================================== */
 function initUTMs() {
   const params = new URLSearchParams(window.location.search);
-  const utms = ['utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'fbclid'];
+  const utms = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
   
   utms.forEach(utm => {
     const value = params.get(utm);
@@ -321,5 +321,12 @@ function initUTMs() {
         input.value = value;
       });
     }
+  });
+
+  document.querySelectorAll('input[name="pagina"]').forEach(input => {
+    input.value = window.location.pathname;
+  });
+  document.querySelectorAll('input[name="referrer"]').forEach(input => {
+    input.value = window.location.href;
   });
 }
